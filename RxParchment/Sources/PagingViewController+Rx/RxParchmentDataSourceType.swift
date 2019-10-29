@@ -20,7 +20,7 @@ public protocol RxParchmentDataSourceType {
     ///
     /// - parameter pageViewController: Bound picker view.
     /// - parameter observedEvent: Event
-    func pagingViewController<T>(_ pageViewControllerpagingViewController: PagingViewController<T>, observedEvent: Event<Element>)
+    func pagingViewController<T>(_ pageViewController: PagingViewController<T>, observedEvent: Event<Element>)
 }
 
 #endif

@@ -22,13 +22,10 @@
 		96AD825A2359BECD0075C77E /* RxParchmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AD82592359BECD0075C77E /* RxParchmentTests.swift */; };
 		96AD825C2359BECD0075C77E /* RxParchment.h in Headers */ = {isa = PBXBuildFile; fileRef = 96AD824E2359BECD0075C77E /* RxParchment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96AD82672359BF480075C77E /* RxParchmentReactiveArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AD82662359BF480075C77E /* RxParchmentReactiveArrayDataSource.swift */; };
-		96AD82692359BF580075C77E /* RxParchment+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AD82682359BF580075C77E /* RxParchment+Rx.swift */; };
+		96AD82692359BF580075C77E /* Parchment+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AD82682359BF580075C77E /* Parchment+Rx.swift */; };
 		96B049D0235AEDB700B3314E /* Parchment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B049CD235AEDB700B3314E /* Parchment.framework */; };
-		96B049D1235AEDB900B3314E /* Parchment.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96B049CD235AEDB700B3314E /* Parchment.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96B049D2235AEDB900B3314E /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B049CE235AEDB700B3314E /* RxSwift.framework */; };
-		96B049D3235AEDBD00B3314E /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96B049CE235AEDB700B3314E /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96B049D4235AEDBD00B3314E /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B049CF235AEDB700B3314E /* RxCocoa.framework */; };
-		96B049D5235AEDC000B3314E /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 96B049CF235AEDB700B3314E /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		96B049E0235AF15D00B3314E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B049DF235AF15D00B3314E /* AppDelegate.swift */; };
 		96B049E6235AF17900B3314E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96B049E5235AF17900B3314E /* Assets.xcassets */; };
 		96B049E9235AF17900B3314E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96B049E8235AF17900B3314E /* Preview Assets.xcassets */; };
@@ -75,19 +72,6 @@
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		96B049D6235AEDC100B3314E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				96B049D5235AEDC000B3314E /* RxCocoa.framework in Embed Frameworks */,
-				96B049D3235AEDBD00B3314E /* RxSwift.framework in Embed Frameworks */,
-				96B049D1235AEDB900B3314E /* Parchment.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -108,7 +92,7 @@
 		96AD82592359BECD0075C77E /* RxParchmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxParchmentTests.swift; sourceTree = "<group>"; };
 		96AD825B2359BECD0075C77E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96AD82662359BF480075C77E /* RxParchmentReactiveArrayDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxParchmentReactiveArrayDataSource.swift; sourceTree = "<group>"; };
-		96AD82682359BF580075C77E /* RxParchment+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxParchment+Rx.swift"; sourceTree = "<group>"; };
+		96AD82682359BF580075C77E /* Parchment+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Parchment+Rx.swift"; sourceTree = "<group>"; };
 		96B049CD235AEDB700B3314E /* Parchment.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parchment.framework; path = Carthage/Build/iOS/Parchment.framework; sourceTree = "<group>"; };
 		96B049CE235AEDB700B3314E /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		96B049CF235AEDB700B3314E /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
@@ -188,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				96AD82662359BF480075C77E /* RxParchmentReactiveArrayDataSource.swift */,
-				96AD82682359BF580075C77E /* RxParchment+Rx.swift */,
+				96AD82682359BF580075C77E /* Parchment+Rx.swift */,
 				96E55A28235B1365002C7DB5 /* RxParchmentDataSourceType.swift */,
 			);
 			path = "PagingViewController+Rx";
@@ -338,7 +322,6 @@
 				96AD82472359BECD0075C77E /* Sources */,
 				96AD82482359BECD0075C77E /* Frameworks */,
 				96AD82492359BECD0075C77E /* Resources */,
-				96B049D6235AEDC100B3314E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -566,7 +549,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96E55A29235B1365002C7DB5 /* RxParchmentDataSourceType.swift in Sources */,
-				96AD82692359BF580075C77E /* RxParchment+Rx.swift in Sources */,
+				96AD82692359BF580075C77E /* Parchment+Rx.swift in Sources */,
 				96E55A31235B1D01002C7DB5 /* ParchmentDelegateProxy.swift in Sources */,
 				96E55A2F235B1CD0002C7DB5 /* RxHelpers.swift in Sources */,
 				96E55A2B235B181A002C7DB5 /* RxPagingViewControllerDataSourceProxy.swift in Sources */,
@@ -775,7 +758,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = RWWB79843X;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -808,7 +791,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = RWWB79843X;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

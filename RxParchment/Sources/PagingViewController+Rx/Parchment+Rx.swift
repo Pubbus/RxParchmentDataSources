@@ -1,5 +1,5 @@
 //
-//  RxParchment+Rx.swift
+//  Parchment+Rx.swift
 //  RxParchment
 //
 //  Created by Le Phi Hung on 10/18/19.
