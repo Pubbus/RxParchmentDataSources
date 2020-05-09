@@ -10,6 +10,6 @@ Pod::Spec.new do |spec|
   spec.source_files  = "RxParchment/Sources/**/*.swift"
   spec.dependency "RxSwift"
   spec.dependency "RxCocoa"
-  spec.dependency "Parchment"
+  spec.dependency "Parchment", "1.7.0"
 
 end
