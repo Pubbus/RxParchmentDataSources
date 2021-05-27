@@ -9,10 +9,10 @@ import RxSwift
 import Parchment
 import RxCocoa
 
-public extension Reactive where Base: PagingViewController<PagingIndexItem> {
+public extension Reactive where Base: PagingViewController {
   func items<Sequence: Swift.Sequence, Source: ObservableType>
       (_ source: Source)
-      -> (_ pagingFactory: @escaping (PagingViewController<PagingIndexItem>, Int, Sequence.Element) -> (UIViewController, String))
+  -> (_ pagingFactory: @escaping (PagingViewController, Int, Sequence.Element) -> (UIViewController, String))
       -> Disposable
       where Source.Element == Sequence {
           return { pagingFactory in
@@ -37,12 +37,12 @@ public extension Reactive where Base: PagingViewController<PagingIndexItem> {
           }
   }
 }
-extension Reactive where Base: PagingViewController<PagingIndexItem> {
+extension Reactive where Base: PagingViewController {
     /**
      Reactive wrapper for `dataSource`.
      For more information take a look at `DelegateProxyType` protocol documentation.
      */
-    public var dataSource: DelegateProxy<PagingViewController<PagingIndexItem>, PagingViewControllerDataSource> {
+    public var dataSource: DelegateProxy<PagingViewController, PagingViewControllerDataSource> {
         return RxPagingViewControllerDataSourceProxy.proxy(for: base)
     }
 
