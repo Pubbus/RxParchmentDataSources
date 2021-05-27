@@ -24,62 +24,64 @@ extension PagingViewController: HasDataSource{
 private let pagingViewDataSourceNotSet = PagingViewDataSourceNotSet()
 
 private final class PagingViewDataSourceNotSet
-    : NSObject
-    , PagingViewControllerDataSource {
-
-  func pagingViewController<T>(_ pagingViewController: PagingViewController<T>, pagingItemForIndex index: Int) -> T where T : PagingItem, T : Comparable, T : Hashable {
-    return PagingIndexItem(index: index, title: "") as! T
-  }
-  func pagingViewController<T>(_ pagingViewController: PagingViewController<T>, viewControllerForIndex index: Int) -> UIViewController where T : PagingItem, T : Comparable, T : Hashable {
-    rxAbstractMethod(message: dataSourceNotSet)
-  }
-
-  func numberOfViewControllers<T>(in pagingViewController: PagingViewController<T>) -> Int where T : PagingItem, T : Comparable, T : Hashable {
-    return 0
-  }
+: NSObject
+  , PagingViewControllerDataSource {
+    func pagingViewController(_: PagingViewController, pagingItemAt index: Int) -> PagingItem {
+        PagingIndexItem(index: index, title: "")
+    }
+    
+    func pagingViewController(_ pagingViewController: PagingViewController, viewControllerAt index: Int) -> UIViewController {
+        rxAbstractMethod(message: dataSourceNotSet)
+    }
+    
+    func numberOfViewControllers(in pagingViewController: PagingViewController) -> Int {
+        return 0
+    }
 }
 /// For more information take a look at `DelegateProxyType`.
 open class RxPagingViewControllerDataSourceProxy
-    : DelegateProxy<PagingViewController<PagingIndexItem>, PagingViewControllerDataSource>
-    , DelegateProxyType
-, PagingViewControllerDataSource {
-
-
+: DelegateProxy<PagingViewController, PagingViewControllerDataSource>
+  , DelegateProxyType
+  , PagingViewControllerDataSource {
+    public func pagingViewController(_: PagingViewController, pagingItemAt index: Int) -> PagingItem {
+        return (_requiredMethodsDataSource ?? pagingViewDataSourceNotSet).pagingViewController(pagingViewController ?? PagingViewController(), pagingItemAt: index)
+    }
+    
     /// Typed parent object.
-    public weak private(set) var pagingViewController: PagingViewController<PagingIndexItem>?
-
+    public weak private(set) var pagingViewController: PagingViewController?
+    
     /// - parameter tableView: Parent object for delegate proxy.
-    public init(pagingViewController: PagingViewController<PagingIndexItem>) {
+    public init(pagingViewController: PagingViewController) {
         self.pagingViewController = pagingViewController
         super.init(parentObject: pagingViewController, delegateProxy: RxPagingViewControllerDataSourceProxy.self)
     }
-
+    
     // Register known implementations
     public static func registerKnownImplementations() {
         self.register { RxPagingViewControllerDataSourceProxy(pagingViewController: $0) }
     }
-
+    
     private weak var _requiredMethodsDataSource: PagingViewControllerDataSource? = pagingViewDataSourceNotSet
-
+    
     // MARK: delegate
-
-  public func numberOfViewControllers<T>(in pagingViewController: PagingViewController<T>) -> Int where T : PagingItem, T : Comparable, T : Hashable {
-    return (_requiredMethodsDataSource ?? pagingViewDataSourceNotSet).numberOfViewControllers(in: pagingViewController)
-  }
-
-  public func pagingViewController<T>(_ pagingViewController: PagingViewController<T>, viewControllerForIndex index: Int) -> UIViewController where T : PagingItem, T : Comparable, T : Hashable {
-    return (_requiredMethodsDataSource ?? pagingViewDataSourceNotSet).pagingViewController(pagingViewController, viewControllerForIndex: index)
-  }
-
-  public func pagingViewController<T>(_ pagingViewController: PagingViewController<T>, pagingItemForIndex index: Int) -> T where T : PagingItem, T : Comparable, T : Hashable {
-    return (_requiredMethodsDataSource ?? pagingViewDataSourceNotSet).pagingViewController(pagingViewController, pagingItemForIndex: index)
-  }
-
-  /// For more information take a look at `DelegateProxyType`.
-  open override func setForwardToDelegate(_ forwardToDelegate: PagingViewControllerDataSource?, retainDelegate: Bool) {
-    _requiredMethodsDataSource = forwardToDelegate  ?? pagingViewDataSourceNotSet
-    super.setForwardToDelegate(forwardToDelegate, retainDelegate: retainDelegate)
-  }
-
+    
+    public func numberOfViewControllers(in pagingViewController: PagingViewController) -> Int {
+        return (_requiredMethodsDataSource ?? pagingViewDataSourceNotSet).numberOfViewControllers(in: pagingViewController)
+    }
+    
+    public func pagingViewController(_ pagingViewController: PagingViewController, viewControllerAt index: Int) -> UIViewController  {
+        return (_requiredMethodsDataSource ?? pagingViewDataSourceNotSet).pagingViewController(pagingViewController, viewControllerAt: index)
+    }
+    
+    public func pagingViewController<T>(_ pagingViewController: PagingViewController, pagingItemForIndex index: Int) -> T where T : PagingItem, T : Comparable, T : Hashable {
+        return (_requiredMethodsDataSource ?? pagingViewDataSourceNotSet).pagingViewController(pagingViewController, pagingItemAt: index) as! T
+    }
+    
+    /// For more information take a look at `DelegateProxyType`.
+    open override func setForwardToDelegate(_ forwardToDelegate: PagingViewControllerDataSource?, retainDelegate: Bool) {
+        _requiredMethodsDataSource = forwardToDelegate  ?? pagingViewDataSourceNotSet
+        super.setForwardToDelegate(forwardToDelegate, retainDelegate: retainDelegate)
+    }
+    
 }
 #endif

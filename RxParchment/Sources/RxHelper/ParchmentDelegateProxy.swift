@@ -14,7 +14,7 @@ import RxCocoa
 extension ObservableType {
     func subscribeProxyDataSource<DelegateProxy: DelegateProxyType>(ofObject object: DelegateProxy.ParentObject, dataSource: DelegateProxy.Delegate, retainDataSource: Bool, binding: @escaping (DelegateProxy, Event<Element>) -> Void)
         -> Disposable
-        where DelegateProxy.ParentObject: PagingViewController<PagingIndexItem> {
+    where DelegateProxy.ParentObject: PagingViewController {
 
             let proxy = DelegateProxy.proxy(for: object)
 
@@ -28,17 +28,17 @@ extension ObservableType {
           object.view.layoutIfNeeded()
 
             let subscription = self.asObservable()
-                .observeOn(MainScheduler())
-                .catchError { error in
+                .observe(on: MainScheduler())
+                .catch { error in
                     bindingErrorToInterface(error)
                     return Observable.empty()
                 }
                 // source can never end, otherwise it would release the subscriber, and deallocate the data source
                 .concat(Observable.never())
-                .takeUntil(object.rx.deallocated)
+                .take(until: object.rx.deallocated)
                 .subscribe { [weak object] (event: RxSwift.Event<Element>) in
 
-                    if let object = object {
+                    if object != nil {
                         // TODO: Enable assert again to prevent Proxy changed
                         // Temporary comment out this to by pass `pod lib lint`
                         // assert(proxy === DelegateProxy.currentDelegate(for: object), "Proxy changed from the time it was first set.\nOriginal: \(proxy)\nExisting: \(String(describing: DelegateProxy.currentDelegate(for: object)))")
